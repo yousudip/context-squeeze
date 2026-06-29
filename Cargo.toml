@@ -33,11 +33,9 @@ thiserror = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 
-# MCP server deps. Exact feature set is verified against the installed rmcp in
-# Phase 6 (MCP wiring); cx-mcp is a stub until then.
-rmcp = { version = "0.8", features = ["server", "macros"] }
+# MCP server deps (official Rust SDK).
+rmcp = { version = "2", features = ["server", "macros", "transport-io", "schemars"] }
 tokio = { version = "1", features = ["macros", "rt-multi-thread", "io-std", "signal"] }
-schemars = "0.8"
 
 # CLI deps
 clap = { version = "4", features = ["derive"] }

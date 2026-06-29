@@ -16,7 +16,9 @@ path = "src/main.rs"
 [dependencies]
 cx-core.workspace = true
 anyhow.workspace = true
-# rmcp + tokio + schemars are wired in Phase 6 (see docs/ROADMAP.md).
+rmcp.workspace = true
+tokio.workspace = true
+serde.workspace = true
 
 [lints]
 workspace = true

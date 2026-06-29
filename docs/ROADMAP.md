@@ -118,19 +118,19 @@ tested, benchmarked, containerized, documented.
 
 ---
 
-## Phase 6 — MCP server wiring (`cx-mcp`) `[ ]`
+## Phase 6 — MCP server wiring (`cx-mcp`) `[x]`
 
 > Goal: expose the three tools to Claude Desktop over stdio.
 
-- [ ] Compile-probe `rmcp` API/features; pin exact version
-- [ ] `ServerHandler` + `#[tool_router]` with three typed tools
-- [ ] `Parameters` structs with `schemars` JSON schemas + descriptions
-- [ ] `CxError` → MCP error mapping; large-output guardrails
-- [ ] stdio transport + graceful shutdown
-- [ ] Smoke test via MCP inspector / a scripted client
-- [ ] `docs/USAGE.md`: Claude Desktop config snippet
+- [x] Pinned `rmcp` 2.0 (`server`, `macros`, `transport-io`, `schemars`)
+- [x] `ServerHandler` + `#[tool_router]`/`#[tool_handler]` with three typed tools
+- [x] `Parameters` structs with `schemars` JSON schemas + descriptions
+- [x] `CxError` → MCP error mapping (`internal_error`/`invalid_params`)
+- [x] stdio transport + EOF-driven shutdown; server identity set to `context-squeeze`
+- [x] Smoke test: scripted `initialize` → `tools/list` → `tools/call` over stdio ✔
+- [x] `docs/USAGE.md`: build + Claude Desktop config snippet
 
-**DoD:** Claude Desktop can call all three tools and get correct output.
+**DoD:** Claude Desktop can call all three tools and get correct output. ✅
 
 ---
 
