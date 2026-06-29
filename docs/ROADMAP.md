@@ -11,7 +11,7 @@ tested, benchmarked, containerized, documented.
 
 ---
 
-## Phase 0 — Foundation & project setup `[~]`
+## Phase 0 — Foundation & project setup `[x]`
 
 > Goal: a building, linted, documented, CI-backed public repo skeleton.
 
@@ -25,8 +25,8 @@ tested, benchmarked, containerized, documented.
 - [x] CI workflow (fmt + clippy `-D warnings` + test, OS matrix)
 - [x] Issue/PR templates
 - [x] Dockerfile (multi-stage skeleton)
-- [ ] `good first issue` / `help wanted` labels
-- [ ] Public GitHub repo created and pushed
+- [x] `good first issue` / `help wanted` labels
+- [x] Public GitHub repo created and pushed
 
 **DoD:** repo is public, CI is green, `cargo check --workspace` passes.
 
