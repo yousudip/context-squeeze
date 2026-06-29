@@ -22,5 +22,11 @@
 //!
 //! Modules are introduced phase-by-phase; see `docs/ROADMAP.md`.
 
+pub mod error;
+pub mod tokenizer;
+
+pub use error::{CxError, Result};
+pub use tokenizer::{Budget, Cl100kCounter, TokenCount, TokenCounter};
+
 /// The crate version, surfaced by the CLI and MCP server handshake.
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");

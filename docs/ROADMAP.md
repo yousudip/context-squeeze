@@ -32,18 +32,18 @@ tested, benchmarked, containerized, documented.
 
 ---
 
-## Phase 1 — Tokenizer & Budget Allocator `[ ]`
+## Phase 1 — Tokenizer & Budget Allocator `[x]`
 
 > Goal: deterministic, offline token measurement and a budgeting primitive.
 
-- [ ] `error` module: `CxError` (`thiserror`) + `Result` alias
-- [ ] `TokenCounter` trait + `Cl100kCounter` impl over `tiktoken-rs`
-- [ ] `TokenCount` newtype + `Budget` type (target, headroom, conservative bias)
-- [ ] `Budget::fits(&self, count)` and remaining-headroom helpers
-- [ ] Unit tests: known strings → expected counts; budget arithmetic
-- [ ] Bench: counting throughput (`criterion`)
+- [x] `error` module: `CxError` (`thiserror`) + `Result` alias
+- [x] `TokenCounter` trait + `Cl100kCounter` impl over `tiktoken-rs`
+- [x] `TokenCount` newtype + `Budget` type (target, headroom, conservative bias)
+- [x] `Budget::fits(&self, count)` and remaining-headroom helpers
+- [x] Unit tests: known strings → expected counts; budget arithmetic
+- [ ] Bench: counting throughput (`criterion`) — _deferred to Phase 7 with the other benches_
 
-**DoD:** counting is stable across runs; budget logic unit-tested.
+**DoD:** counting is stable across runs; budget logic unit-tested. ✅
 
 ---
 
