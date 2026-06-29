@@ -20,6 +20,7 @@ tree-sitter-go.workspace = true
 tree-sitter-rust.workspace = true
 tiktoken-rs.workspace = true
 ignore.workspace = true
+regex.workspace = true
 thiserror.workspace = true
 serde = { workspace = true }
 

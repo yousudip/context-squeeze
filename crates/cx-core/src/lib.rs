@@ -24,12 +24,14 @@
 
 pub mod ast;
 pub mod error;
+pub mod logs;
 pub mod skeleton;
 pub mod squeeze;
 pub mod tokenizer;
 
 pub use ast::{Declaration, Language};
 pub use error::{CxError, Result};
+pub use logs::{summarize_log_stream, LogOptions, LogSummary};
 pub use skeleton::{codebase_skeleton, file_skeleton, SkeletonOptions, SkeletonReport};
 pub use squeeze::{squeeze_file, SqueezeLevel, SqueezeResult};
 pub use tokenizer::{Budget, Cl100kCounter, TokenCount, TokenCounter};

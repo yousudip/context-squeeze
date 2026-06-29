@@ -100,18 +100,21 @@ tested, benchmarked, containerized, documented.
 
 ---
 
-## Phase 5 — Log stream summarization (`summarize_log_stream`) `[ ]`
+## Phase 5 — Log stream summarization (`summarize_log_stream`) `[x]`
 
 > Goal: collapse a large log into a compact error anatomy.
 
-- [ ] Line normalization (ANSI, timestamps, UUID/hex/IDs → canonical)
-- [ ] Stack-trace detection & folding (Python, JS/TS, Go, Rust, generic)
-- [ ] Clustering by signature with counts + first/last ordinals
-- [ ] Severity ranking (error > warn > info) then frequency
-- [ ] Error-anatomy output format + token accounting
-- [ ] Tests on synthetic multi-error logs (dedup correctness, ordering)
+- [x] Line normalization (ANSI, timestamps, UUID/hex/IP/long-ints → canonical)
+- [x] Stack-trace folding (indented frames + Python traceback terminator state)
+- [x] Clustering by signature (incl. deepest frame) with counts + first/last line
+- [x] Severity ranking (fatal > error > warn > info > debug) then frequency
+- [x] Error-anatomy output format + token accounting (`LogSummary`)
+- [x] Tests: dedup counts, ranking, traceback distinction, >90% reduction
 
-**DoD:** big repetitive logs reduce to a stable, ranked error map.
+**DoD:** big repetitive logs reduce to a stable, ranked error map. ✅
+
+> Note: Go/JVM "Caused by" multi-segment traces fold partially; deeper
+> language-specific trace grammars are tracked in the backlog.
 
 ---
 
