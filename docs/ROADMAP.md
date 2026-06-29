@@ -63,19 +63,22 @@ tested, benchmarked, containerized, documented.
 
 ---
 
-## Phase 3 — Skeleton extraction (`inspect_codebase_skeleton`) `[ ]`
+## Phase 3 — Skeleton extraction (`inspect_codebase_skeleton`) `[x]`
 
 > Goal: condensed, signature-only map of a directory tree.
 
-- [ ] `ignore`-based walker (respect `.gitignore`, hidden, size caps, binary skip)
-- [ ] Per-file skeletonizer: keep declaration headers, drop bodies
-- [ ] Nested declarations (methods within classes/impls) preserved with indentation
-- [ ] Compact output format (tree of paths → signatures) + token accounting
-- [ ] Graceful handling of unsupported/unparyseable files (listed, not parsed)
-- [ ] Snapshot tests over a mixed-language fixture project
-- [ ] Reduction-ratio assertion (≥ target on fixtures)
+- [x] `ignore`-based walker (respect `.gitignore`/hidden, size cap, sorted output)
+- [x] Per-file skeletonizer: keep declaration headers, drop bodies
+- [x] Nested declarations (methods within classes/impls) preserved with indentation
+- [x] Compact per-file output format + token accounting (`SkeletonReport`)
+- [x] Graceful handling of unsupported/too-large/unreadable files (listed, not parsed)
+- [x] Snapshot test over a mixed-language fixture project (Rust/Python/TS/Go)
+- [x] Reduction-ratio assertion (> 45% on fixtures)
 
-**DoD:** real directory → faithful skeleton; snapshot-pinned; ratio measured.
+**DoD:** real directory → faithful skeleton; snapshot-pinned; ratio measured. ✅
+
+> Note: type bodies (struct fields, enum variants) are dropped in the
+> signature-only view; surfacing them is tracked in the post-`0.1.0` backlog.
 
 ---
 

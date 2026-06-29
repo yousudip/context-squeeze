@@ -95,10 +95,20 @@ fn build_decl(node: Node, source: &str, spec: &LangSpec, depth: usize) -> Declar
         .child_by_field_name(spec.body_field)
         .map(|n| n.byte_range());
     let node_range = node.byte_range();
-    let header = match &body {
-        Some(b) => node_range.start..b.start,
-        None => node_range.clone(),
-    };
+
+    // The header runs from the node start up to the body (or the whole node when
+    // there is no body). Some grammars attach a comment between the signature
+    // and the body (e.g. an inline comment on the first body line in Python);
+    // trim the header back to the earliest such comment so signatures stay clean.
+    let mut header_end = body.as_ref().map(|b| b.start).unwrap_or(node_range.end);
+    let mut cursor = node.walk();
+    for child in node.named_children(&mut cursor) {
+        if spec.comment_kinds.contains(&child.kind()) && child.start_byte() < header_end {
+            header_end = child.start_byte();
+        }
+    }
+    let header = node_range.start..header_end;
+
     Declaration {
         kind: node.kind(),
         name,

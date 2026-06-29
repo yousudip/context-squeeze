@@ -24,10 +24,12 @@
 
 pub mod ast;
 pub mod error;
+pub mod skeleton;
 pub mod tokenizer;
 
 pub use ast::{Declaration, Language};
 pub use error::{CxError, Result};
+pub use skeleton::{codebase_skeleton, file_skeleton, SkeletonOptions, SkeletonReport};
 pub use tokenizer::{Budget, Cl100kCounter, TokenCount, TokenCounter};
 
 /// The crate version, surfaced by the CLI and MCP server handshake.
