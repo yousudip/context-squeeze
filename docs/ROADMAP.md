@@ -47,19 +47,19 @@ tested, benchmarked, containerized, documented.
 
 ---
 
-## Phase 2 — AST Engine & language registry `[ ]`
+## Phase 2 — AST Engine & language registry `[x]`
 
 > Goal: parse all target languages and classify declaration/body nodes.
 
-- [ ] `Language` enum (Python, TS, JS, Go, Rust) + extension detection
-- [ ] Grammar wiring + cached `Parser` per language
-- [ ] Per-language node-kind tables (declaration kinds, body child, name field)
-- [ ] `parse(source, lang) -> Tree` + safe error surfacing
-- [ ] Declaration-walk iterator yielding `(kind, name, header_span, body_span)`
-- [ ] Fixtures for each language; tests assert declarations found
-- [ ] Round-trip invariant helper: "this byte-edited source still parses"
+- [x] `Language` enum (Python, JS, TS, TSX, Go, Rust) + extension detection
+- [x] Grammar wiring (`ts_language`) verified loadable for every language
+- [x] Per-language node-kind tables (declaration kinds, body/name field, comments)
+- [x] `parse(source, lang) -> Tree` + safe error surfacing (`CxError::Parse`)
+- [x] `declarations(...)` walker yielding `(kind, name, depth, header, body)` spans
+- [x] Tests per language assert declarations found (incl. Go name fallback)
+- [x] Round-trip invariant helper (`parses_cleanly`)
 
-**DoD:** every target language parses; declarations enumerated with spans.
+**DoD:** every target language parses; declarations enumerated with spans. ✅
 
 ---
 

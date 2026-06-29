@@ -22,9 +22,11 @@
 //!
 //! Modules are introduced phase-by-phase; see `docs/ROADMAP.md`.
 
+pub mod ast;
 pub mod error;
 pub mod tokenizer;
 
+pub use ast::{Declaration, Language};
 pub use error::{CxError, Result};
 pub use tokenizer::{Budget, Cl100kCounter, TokenCount, TokenCounter};
 
