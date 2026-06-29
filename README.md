@@ -16,10 +16,11 @@ matter — using parsers and tree-walking, not another expensive LLM call.
 
 ---
 
-> [!WARNING]
-> **Status: early development (pre-`0.1.0`).** The architecture and roadmap below
-> are real and being built in the open. Follow [`docs/ROADMAP.md`](docs/ROADMAP.md)
-> for live progress. Stars and early feedback are very welcome.
+> [!NOTE]
+> **Status: MVP feature-complete on `main`, pre-first-release.** All three tools
+> work end-to-end over MCP and the CLI. APIs may still shift before `0.1.0`.
+> Follow [`docs/ROADMAP.md`](docs/ROADMAP.md) for live progress — stars, issues,
+> and PRs are very welcome.
 
 ## The problem
 
@@ -77,19 +78,35 @@ understands code. Context Squeeze sits between Claude and your raw data as an
 
 ## Quickstart
 
-> Subcommands and the MCP server are landing phase-by-phase — see the
-> [roadmap](docs/ROADMAP.md). Once the MVP ships:
-
 ```bash
-# Build from source
+# Build from source (needs Rust 1.82+; on Windows, MSVC C++ build tools)
 cargo build --release
 
 # Try the engine from the CLI
 ./target/release/cx skeleton ./my-project
 ./target/release/cx squeeze ./src/big_file.rs --budget 800
+./target/release/cx logs ./build.log
 
-# Register the MCP server with Claude Desktop (see docs/USAGE.md)
+# Register the MCP server with Claude Desktop — see docs/USAGE.md
 ```
+
+A real run of `cx logs` over a noisy service log:
+
+```
+# Log summary: 18 lines, 13 records → 8 distinct event(s)
+
+## [ERROR ×4] lines 5–16
+... ERROR upstream timeout calling payments at 10.2.3.4:443 (req 8f1c0a3e-…)
+
+## [ERROR ×1] line 10
+Traceback (most recent call last):
+  File "/app/handlers/orders.py", line 88, in create_order
+    total = order.total()
+ValueError: invalid unit_price: None
+```
+
+Four timeouts with different IPs and request IDs fold into one event; the
+traceback is isolated and ranked by severity. See [`examples/`](examples/).
 
 ## Repository layout
 

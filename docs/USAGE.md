@@ -4,7 +4,13 @@ Context Squeeze ships an MCP server (`cx-mcp`) that speaks the Model Context
 Protocol over stdio, plus a developer CLI (`cx`). This guide covers building it
 and registering the server with Claude Desktop.
 
-## Build
+## Install
+
+**Prebuilt binaries.** Once a release is tagged, download the archive for your
+platform from the [Releases page](https://github.com/yousudip/context-squeeze/releases)
+and extract `cx` and `cx-mcp`.
+
+**From source:**
 
 ```bash
 git clone https://github.com/yousudip/context-squeeze

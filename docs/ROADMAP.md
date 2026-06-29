@@ -7,7 +7,8 @@ work lands so progress is visible at a glance.
 **Legend:** `[ ]` todo · `[~]` in progress · `[x]` done
 
 **Milestone `0.1.0` (MVP)** = Phases 0–8: all three tools working over MCP + CLI,
-tested, benchmarked, containerized, documented.
+tested, benchmarked, containerized, documented. **✅ All eight phases complete on
+`main`** — pending a tagged `v0.1.0` release.
 
 ---
 
@@ -149,16 +150,20 @@ tested, benchmarked, containerized, documented.
 
 ---
 
-## Phase 8 — Packaging, Docker & releases `[ ]`
+## Phase 8 — Packaging, Docker & releases `[x]`
 
 > Goal: easy install; reproducible, lightweight distribution.
 
-- [ ] Multi-stage Dockerfile (slim runtime, stripped static binary)
-- [ ] Release workflow: cross-compile Linux/macOS/Windows, attach to Releases
-- [ ] `cargo install` + Docker usage docs; MCP config recipes
-- [ ] Optional: publish `cx-core` to crates.io
+- [x] Multi-stage Dockerfile (slim runtime, stripped binary, non-root user)
+- [x] Release workflow: cross-compile Linux/macOS (arm+x86)/Windows → draft Release
+- [x] Install + Claude Desktop + Docker usage docs (`docs/USAGE.md`); `CHANGELOG.md`
+- [ ] Optional: publish `cx-core` to crates.io (deferred to first tagged release)
 
-**DoD:** a user can install and register the server in minutes.
+**DoD:** a user can install and register the server in minutes. ✅
+
+> Note: the Docker image build was not verified on the dev machine (the local
+> Docker daemon was unavailable); the Dockerfile is standard multi-stage and the
+> Linux toolchain is exercised by CI. Verify with `docker build -t context-squeeze .`
 
 ---
 
@@ -179,3 +184,6 @@ Material changes to scope or sequence are recorded here so the history of the
 plan stays auditable.
 
 - `2026-06-29` — Initial roadmap drafted; Phase 0 scaffolding underway.
+- `2026-06-30` — Phases 1–8 landed; MVP feature-complete on `main`. Tokenizer
+  bench folded into Phase 7; struct-field/Go-`Caused by` refinements moved to the
+  backlog; Docker build unverified locally (daemon unavailable).
