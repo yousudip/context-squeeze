@@ -119,6 +119,59 @@ fn build_decl(node: Node, source: &str, spec: &LangSpec, depth: usize) -> Declar
     }
 }
 
+/// Collect the byte ranges of every comment node in `tree`.
+pub fn comment_ranges(tree: &Tree, language: Language) -> Vec<Range<usize>> {
+    let spec = language.spec();
+    let mut out = Vec::new();
+    collect_kinds(tree.root_node(), spec.comment_kinds, &mut out);
+    out
+}
+
+/// Collect the byte ranges of Python docstrings that are *safe to remove* — i.e.
+/// the leading string statement of a module/class/function body that has at
+/// least one following statement (so removal can't empty the body). Returns an
+/// empty list for non-Python languages.
+pub fn docstring_ranges(tree: &Tree, language: Language) -> Vec<Range<usize>> {
+    if language != Language::Python {
+        return Vec::new();
+    }
+    let mut out = Vec::new();
+    collect_docstrings(tree.root_node(), &mut out);
+    out
+}
+
+fn collect_kinds(node: Node, kinds: &[&str], out: &mut Vec<Range<usize>>) {
+    let mut cursor = node.walk();
+    for child in node.children(&mut cursor) {
+        if kinds.contains(&child.kind()) {
+            out.push(child.byte_range());
+        }
+        collect_kinds(child, kinds, out);
+    }
+}
+
+fn collect_docstrings(node: Node, out: &mut Vec<Range<usize>>) {
+    // A docstring is the first statement of a `module`/`block` and is an
+    // `expression_statement` wrapping a single `string`.
+    if matches!(node.kind(), "module" | "block") {
+        let mut cursor = node.walk();
+        let stmts: Vec<Node> = node.named_children(&mut cursor).collect();
+        if stmts.len() >= 2 {
+            let first = stmts[0];
+            if first.kind() == "expression_statement"
+                && first.named_child_count() == 1
+                && first.named_child(0).map(|c| c.kind()) == Some("string")
+            {
+                out.push(first.byte_range());
+            }
+        }
+    }
+    let mut cursor = node.walk();
+    for child in node.children(&mut cursor) {
+        collect_docstrings(child, out);
+    }
+}
+
 /// Resolve a declaration's name, falling back one level for grammars that nest
 /// the identifier (e.g. Go's `type_declaration` → `type_spec.name`).
 fn decl_name(node: Node, source: &str, spec: &LangSpec) -> Option<String> {

@@ -27,6 +27,9 @@ pub struct LangSpec {
     /// Node kinds that represent declarations we want to surface (functions,
     /// classes, types, …).
     pub decl_kinds: &'static [&'static str],
+    /// The subset of `decl_kinds` that are function-like — i.e. whose bodies the
+    /// squeeze pass may collapse to a stub.
+    pub fn_kinds: &'static [&'static str],
     /// The field name holding a declaration's identifier.
     pub name_field: &'static str,
     /// The field name holding a declaration's body (the part squeezing collapses).
@@ -86,6 +89,7 @@ impl Language {
         match self {
             Language::Python => LangSpec {
                 decl_kinds: &["function_definition", "class_definition"],
+                fn_kinds: &["function_definition"],
                 name_field: "name",
                 body_field: "body",
                 comment_kinds: &["comment"],
@@ -97,6 +101,11 @@ impl Language {
                     "function_declaration",
                     "generator_function_declaration",
                     "class_declaration",
+                    "method_definition",
+                ],
+                fn_kinds: &[
+                    "function_declaration",
+                    "generator_function_declaration",
                     "method_definition",
                 ],
                 name_field: "name",
@@ -114,6 +123,11 @@ impl Language {
                     "type_alias_declaration",
                     "enum_declaration",
                 ],
+                fn_kinds: &[
+                    "function_declaration",
+                    "generator_function_declaration",
+                    "method_definition",
+                ],
                 name_field: "name",
                 body_field: "body",
                 comment_kinds: &["comment"],
@@ -124,6 +138,7 @@ impl Language {
                     "method_declaration",
                     "type_declaration",
                 ],
+                fn_kinds: &["function_declaration", "method_declaration"],
                 name_field: "name",
                 body_field: "body",
                 comment_kinds: &["comment"],
@@ -140,6 +155,7 @@ impl Language {
                     "type_item",
                     "macro_definition",
                 ],
+                fn_kinds: &["function_item"],
                 name_field: "name",
                 body_field: "body",
                 comment_kinds: &["line_comment", "block_comment"],

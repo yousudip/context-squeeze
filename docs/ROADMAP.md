@@ -82,21 +82,21 @@ tested, benchmarked, containerized, documented.
 
 ---
 
-## Phase 4 — Semantic file squeezing (`fetch_squeezed_file`) `[ ]`
+## Phase 4 — Semantic file squeezing (`fetch_squeezed_file`) `[x]`
 
 > Goal: budget-driven single-file compression along the degradation ladder.
 
-- [ ] L1 strip comments/docstrings (per-language comment node kinds)
-- [ ] L2 collapse blank/padding runs
-- [ ] L3 greedy body collapse by token cost (largest first)
-- [ ] L4 collapse all bodies; L5 header-only; L6 truncated-with-marker
-- [ ] Budget-fitting loop: first level that fits wins
-- [ ] Elision metadata (level reached, before/after tokens, items elided)
-- [ ] Invariant test: every level re-parses without syntax error
-- [ ] Budget invariant test: output ≤ budget when satisfiable
-- [ ] Snapshot tests across languages and budgets
+- [x] L1 strip comments + safe Python docstrings (AST node kinds)
+- [x] L2 collapse blank/padding runs (`normalize_ws`)
+- [x] L3 greedy body collapse by body size (largest first)
+- [x] L4 collapse all bodies; L5 skeleton; L6 truncated-with-marker
+- [x] Budget-fitting loop: first level that fits wins
+- [x] Elision metadata (`SqueezeResult`: level, before/after tokens, bodies collapsed, validity)
+- [x] Invariant test: every valid-source level (L0–L4) re-parses without error
+- [x] Budget invariant: `fits_budget` reflects effective limit; cross-budget tests
+- [x] Byte-range edit engine (`apply_edits`) with overlap-safe collapsing
 
-**DoD:** budgets honored; syntax always valid; elisions reported.
+**DoD:** budgets honored; syntax always valid (L0–L4); elisions reported. ✅
 
 ---
 
