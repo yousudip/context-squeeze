@@ -1,0 +1,18 @@
+2026-06-30T09:15:01.220Z INFO  service starting, version 1.4.2
+2026-06-30T09:15:01.880Z INFO  listening on 0.0.0.0:8080
+2026-06-30T09:15:02.001Z INFO  request GET /health 200 in 2ms
+2026-06-30T09:15:02.140Z INFO  request GET /health 200 in 1ms
+2026-06-30T09:15:03.512Z ERROR upstream timeout calling payments at 10.2.3.4:443 (req 8f1c0a3e-2b9d-4e7a-9c11-7d5e2f0a1b22)
+2026-06-30T09:15:04.910Z ERROR upstream timeout calling payments at 10.2.3.5:443 (req 1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d)
+2026-06-30T09:15:05.330Z ERROR upstream timeout calling payments at 10.2.3.6:443 (req 9f8e7d6c-5b4a-3210-fedc-ba9876543210)
+2026-06-30T09:15:06.002Z WARN  retry queue depth 1024 exceeds soft limit 512
+2026-06-30T09:15:07.450Z INFO  request POST /orders 201 in 38ms
+Traceback (most recent call last):
+  File "/app/handlers/orders.py", line 88, in create_order
+    total = order.total()
+  File "/app/models/order.py", line 51, in total
+    running += item.subtotal()
+ValueError: invalid unit_price: None
+2026-06-30T09:15:09.870Z ERROR upstream timeout calling payments at 10.2.3.7:443 (req 0011aabb-ccdd-eeff-0011-223344556677)
+2026-06-30T09:15:10.110Z WARN  retry queue depth 2048 exceeds soft limit 512
+2026-06-30T09:15:12.330Z INFO  request GET /health 200 in 2ms

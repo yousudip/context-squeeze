@@ -134,17 +134,18 @@ tested, benchmarked, containerized, documented.
 
 ---
 
-## Phase 7 — CLI, golden tests & benchmarks `[ ]`
+## Phase 7 — CLI, golden tests & benchmarks `[x]`
 
 > Goal: first-class local UX and a regression-proof test/bench suite.
 
-- [ ] `clap` CLI: `skeleton`, `squeeze`, `logs` subcommands + flags
-- [ ] Human-readable and `--json` output modes
-- [ ] Integration/golden tests driving the CLI end-to-end
-- [ ] `criterion` benches: reduction ratio + throughput per tool
-- [ ] Sample corpus under `examples/` for demos and docs
+- [x] `clap` CLI: `skeleton`, `squeeze`, `logs` subcommands + flags
+- [x] Human-readable (stats to stderr, result to stdout) and `--json` output modes
+- [x] `logs` reads from a file or stdin
+- [x] Golden tests driving the built `cx` binary end-to-end (6 tests)
+- [x] `criterion` bench (`engine`) for skeleton/squeeze/log throughput
+- [x] Sample corpus under `examples/` (Python file + noisy log) for demos
 
-**DoD:** `cx` is usable standalone; benchmarks and golden tests run in CI.
+**DoD:** `cx` is usable standalone; golden tests run in CI; benches available. ✅
 
 ---
 

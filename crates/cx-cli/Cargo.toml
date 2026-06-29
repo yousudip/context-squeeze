@@ -17,6 +17,7 @@ path = "src/main.rs"
 cx-core.workspace = true
 clap.workspace = true
 anyhow.workspace = true
+serde_json.workspace = true
 
 [lints]
 workspace = true

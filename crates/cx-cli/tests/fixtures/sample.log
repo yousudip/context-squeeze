@@ -1,0 +1,6 @@
+2026-06-30T10:00:01Z INFO starting service
+2026-06-30T10:00:02Z ERROR connection to 10.0.0.1 refused
+2026-06-30T10:00:03Z ERROR connection to 10.0.0.2 refused
+2026-06-30T10:00:04Z ERROR connection to 10.0.0.3 refused
+2026-06-30T10:00:05Z WARN retry budget low
+2026-06-30T10:00:06Z INFO shutting down
