@@ -1,0 +1,30 @@
+[package]
+name = "cx-core"
+description = "Deterministic context-compression engine for Context Squeeze (AST squeezing, budget allocation, log summarization)."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[dependencies]
+tree-sitter.workspace = true
+tree-sitter-python.workspace = true
+tree-sitter-javascript.workspace = true
+tree-sitter-typescript.workspace = true
+tree-sitter-go.workspace = true
+tree-sitter-rust.workspace = true
+tiktoken-rs.workspace = true
+ignore.workspace = true
+thiserror.workspace = true
+serde = { workspace = true }
+
+[dev-dependencies]
+insta.workspace = true
+
+[lints]
+workspace = true

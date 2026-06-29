@@ -1,0 +1,25 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
+*.pdb
+
+# Cargo: the lockfile IS committed for the binary crates (reproducible builds),
+# so it is intentionally NOT ignored.
+
+# Criterion benchmark output
+/target/criterion/
+
+# Editor / OS noise
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local environment overrides
+.env
+.env.local
+
+# Insta pending snapshots
+**/*.snap.new

@@ -1,0 +1,5 @@
+# Pin a recent stable toolchain so local builds, CI, and contributors stay in
+# lockstep. Bump deliberately alongside `rust-version` in Cargo.toml.
+[toolchain]
+channel = "stable"
+components = ["rustfmt", "clippy"]

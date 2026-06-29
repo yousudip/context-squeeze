@@ -1,0 +1,22 @@
+[package]
+name = "cx-mcp"
+description = "Model Context Protocol (stdio) server exposing Context Squeeze tools to Claude and other MCP clients."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+authors.workspace = true
+
+[[bin]]
+name = "cx-mcp"
+path = "src/main.rs"
+
+[dependencies]
+cx-core.workspace = true
+anyhow.workspace = true
+# rmcp + tokio + schemars are wired in Phase 6 (see docs/ROADMAP.md).
+
+[lints]
+workspace = true

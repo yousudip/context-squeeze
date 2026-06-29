@@ -1,0 +1,68 @@
+# Context Squeeze — Cargo workspace
+#
+# The project is split into a pure-Rust core engine and two thin wrappers
+# (an MCP server and a developer CLI) so the compression logic can be tested,
+# benchmarked, and reused independently of any transport.
+[workspace]
+resolver = "2"
+members = ["crates/cx-core", "crates/cx-mcp", "crates/cx-cli"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.82"
+license = "MIT"
+repository = "https://github.com/yousudip/context-squeeze"
+homepage = "https://github.com/yousudip/context-squeeze"
+authors = ["Sudip Bhakta <yousudip@gmail.com>"]
+keywords = ["mcp", "claude", "context", "compression", "tree-sitter"]
+categories = ["development-tools", "compression", "command-line-utilities"]
+
+[workspace.dependencies]
+# Core engine deps
+tree-sitter = "0.25"
+tree-sitter-python = "0.25"
+tree-sitter-javascript = "0.25"
+tree-sitter-typescript = "0.23"
+tree-sitter-go = "0.25"
+tree-sitter-rust = "0.24"
+tiktoken-rs = "0.7"
+ignore = "0.4"
+thiserror = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+# MCP server deps. Exact feature set is verified against the installed rmcp in
+# Phase 6 (MCP wiring); cx-mcp is a stub until then.
+rmcp = { version = "0.8", features = ["server", "macros"] }
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "io-std", "signal"] }
+schemars = "0.8"
+
+# CLI deps
+clap = { version = "4", features = ["derive"] }
+anyhow = "1"
+
+# Internal crates
+cx-core = { path = "crates/cx-core", version = "0.1.0" }
+
+# Dev/test deps
+insta = "1"
+criterion = "0.5"
+
+# Compile dependencies with optimizations even in dev builds — tree-sitter
+# parsing is noticeably faster and test runs stay snappy.
+[profile.dev.package."*"]
+opt-level = 2
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
+
+# Workspace-wide lint configuration. Treated as guidance in CI (clippy -D warnings).
+[workspace.lints.rust]
+unsafe_code = "forbid"
+missing_debug_implementations = "warn"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
