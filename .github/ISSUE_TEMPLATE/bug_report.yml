@@ -1,0 +1,37 @@
+name: Bug report
+description: Something produced wrong or broken output
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for the report! A minimal reproducing input helps enormously.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What did you run, and what was wrong with the output?
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Minimal input
+      description: The smallest file/log snippet (and command/tool + budget) that reproduces it.
+      render: text
+    validations:
+      required: true
+  - type: input
+    id: language
+    attributes:
+      label: Source language (if code)
+      placeholder: Python / TypeScript / JavaScript / Go / Rust
+  - type: input
+    id: version
+    attributes:
+      label: Version / commit
+      placeholder: e.g. 0.1.0 or a git SHA
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: Linux / macOS / Windows
