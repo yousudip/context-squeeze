@@ -23,3 +23,6 @@ Thumbs.db
 
 # Insta pending snapshots
 **/*.snap.new
+
+# Intro/marketing video assets (large binaries, kept out of the repo)
+/intro_video/
